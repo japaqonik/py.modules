@@ -1,4 +1,6 @@
 from singleton import SingletonMeta
+from tracelog import TraceLogger, ABNORMAL, FT_GLOBAL
+import re
 
 
 class EventProducer():
@@ -10,6 +12,7 @@ class EventProducer():
 
     def send_event(self, event):
         for listener in self._event_listeners:
+            TraceLogger().trace(FT_GLOBAL, "Sending event of type: ", type(event))
             listener.handle_event(event)
 
 
@@ -24,13 +27,20 @@ class EventListener:
 
     def register_event_handler(self, event_type, event_handler):
         if not event_type in self._event_handlers:
+            TraceLogger().trace(FT_GLOBAL, "Event handler registered fro event type: ", event_type)
             self._event_handlers[event_type] = event_handler
         else:
-            print("Event: ", event_type, " has already registered handler!!!")
+            TraceLogger().trace(ABNORMAL, "Event: ", event_type,
+                                " has already registered handler!!!")
 
     def handle_event(self, event):
-        print("Event recieved of type ", type(event))
+        TraceLogger().trace(FT_GLOBAL, "Event received of type: ", type(event))
         if type(event) in self._event_handlers:
-            self._event_handlers[type(event)].handler_received_event(event)
+            TraceLogger().trace(FT_GLOBAL, "Valid handler found for event of type: ",
+                                type(event), ". Rounting event.")
+            self._event_handlers[type(event)].handle_received_event(event)
         else:
-            print("No valid handler found for event of type: ", type(event))
+            TraceLogger().trace(ABNORMAL, "No valid handler found for event of type: ", type(event))
+
+
+
