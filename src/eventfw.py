@@ -27,7 +27,7 @@ class EventListener:
 
     def register_event_handler(self, event_type, event_handler):
         if not event_type in self._event_handlers:
-            TraceLogger().trace(FT_GLOBAL, "Event handler registered fro event type: ", event_type)
+            TraceLogger().trace(FT_GLOBAL, "Event handler registered for event type: ", event_type)
             self._event_handlers[event_type] = event_handler
         else:
             TraceLogger().trace(ABNORMAL, "Event: ", event_type,
@@ -41,6 +41,3 @@ class EventListener:
             self._event_handlers[type(event)].handle_received_event(event)
         else:
             TraceLogger().trace(ABNORMAL, "No valid handler found for event of type: ", type(event))
-
-
-
