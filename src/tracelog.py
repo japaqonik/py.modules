@@ -49,7 +49,7 @@ class TraceLogger(metaclass=SingletonMeta):
             caller_method = str(prev_frame.f_code.co_name)
             result = get_trace_line(
                 trace_object, caller_class, caller_method, result)
-            print(result)
+            #print(result)
             save_line_to_file(result)
 
 
