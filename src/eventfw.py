@@ -21,9 +21,10 @@ class EventProducerSingleton(EventProducer, metaclass=SingletonMeta):
 
 
 class EventListener:
-    def __init__(self, event_producer):
-        self._event_handlers = {}
-        event_producer.register_event_litener(self)
+    def __init__(self, event_producer = None):
+        if event_producer is not None:
+            self._event_handlers = {}
+            event_producer.register_event_litener(self)
 
     def register_event_handler(self, event_type, event_handler):
         if not event_type in self._event_handlers:
