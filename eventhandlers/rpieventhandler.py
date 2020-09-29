@@ -1,6 +1,6 @@
-from events import EventLightSwitch, EventLightStateUpdate
-from tracelog import TraceLogger, FT_GLOBAL, ERROR
-from eventfw import EventProducerSingleton
+from ..eventframework.events import EventLightSwitch, EventLightStateUpdate
+from ..trace.tracelog import TraceLogger, FT_GLOBAL, ERROR
+from ..eventframework.eventproducer import EventProducerSingleton
 
 class RaspberryEventHandler:
     def __init__(self):

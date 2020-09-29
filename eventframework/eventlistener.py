@@ -1,24 +1,5 @@
-from singleton import SingletonMeta
-from tracelog import TraceLogger, ABNORMAL, FT_GLOBAL
-import re
-
-
-class EventProducer:
-    def __init__(self):
-        self._event_listeners = []
-
-    def register_event_litener(self, listener):
-        self._event_listeners.append(listener)
-
-    def send_event(self, event):
-        for listener in self._event_listeners:
-            TraceLogger().trace(FT_GLOBAL, "Sending event of type: ", type(event))
-            listener.handle_event(event)
-
-
-class EventProducerSingleton(EventProducer, metaclass=SingletonMeta):
-    pass
-
+from ..singleton.singletonmeta import SingletonMeta
+from ..trace.tracelog import TraceLogger, ABNORMAL, FT_GLOBAL
 
 class EventListener:
     def __init__(self, event_producer = None):

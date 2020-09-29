@@ -1,9 +1,7 @@
 from datetime import datetime
-from singleton import SingletonMeta
 from pathlib import Path
-import os
-import re
-import inspect
+from ..singleton.singletonmeta import SingletonMeta
+import os, re, inspect
 
 ERROR, ABNORMAL, FT_GLOBAL = range(0, 3)
 

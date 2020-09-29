@@ -1,4 +1,4 @@
-from events import EventLightStateUpdate
+from ..eventframework.events import EventLightStateUpdate
 
 class LightStateStorage:
     def __init__(self):
